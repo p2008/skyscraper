@@ -7,6 +7,5 @@ from django.contrib import messages
 
 def room_remove(request, rid):
     Room.objects.get(pk=rid)
-    message = 'Usunięto salę'
-
-    return render(request, 'room_remove_view.html', message)
+    messages.success(request, 'Usunięto salę')
+    return render(request, 'room_remove_view.html')
