@@ -1,5 +1,5 @@
 """
-WSGI config for skyscarper_conference_rooms_workshop project.
+WSGI config for skyscraper project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'skyscarper_conference_rooms_workshop.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'skyscraper.settings')
 
 application = get_wsgi_application()
