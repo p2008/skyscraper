@@ -1,6 +1,7 @@
 from django.http.response import HttpResponse
 from django.shortcuts import render
 from rooms.models import Room
+from django.contrib import messages
 
 # As a user, I want to remove room on click remove.
 
