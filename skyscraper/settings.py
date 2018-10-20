@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'skyscarper.urls'
+ROOT_URLCONF = 'skyscraper.urls'
 
 TEMPLATES = [
     {
