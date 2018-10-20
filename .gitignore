@@ -1,2 +1,3 @@
 .skyscraper/logins.py
-.idea/
+.idea/*
+__pycache__/
