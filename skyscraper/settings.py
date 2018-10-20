@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+
 from skyscraper.logins import user, password
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -51,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'skyscarper_conference_rooms_workshop.urls'
+ROOT_URLCONF = 'skyscarper.urls'
 
 TEMPLATES = [
     {
