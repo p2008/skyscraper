@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Show all {{ block.super }}{% endblock title %}
+
+{% block content %}
+    <div class="">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Lp.</th>
+                    <th>Name</th>
+                    <th>capacity</th>
+                    <th>projector</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                    <tr>
+                        <td>room.id</td>
+                        <td>room.name</td>
+                        <td>room.capacity</td>
+                        <td>
+                            {% if room.is_projector %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
+    </div>
+{% endblock content %}
+
