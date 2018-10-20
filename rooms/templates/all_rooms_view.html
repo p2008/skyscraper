@@ -11,19 +11,28 @@
                     <th>Name</th>
                     <th>capacity</th>
                     <th>projector</th>
+                    <th>reserved</th>
+                    <th colspan="2"></th>
                 </tr>
             </thead>
             <tbody>
                 {% for room in rooms %}
                     <tr>
-                        <td>room.id</td>
-                        <td>room.name</td>
-                        <td>room.capacity</td>
+                        <td>{{ room.id }}</td>
+                        <td>{{ room.name }}</td>
+                        <td>{{ room.capacity }}</td>
                         <td>
                             {% if room.is_projector %}
                                 Yes
                             {% else %}
                                 No
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if room.reservation.count > 0 %}
+                                <a href="#">{{ room.reservation.count }}</a>
+                            {% else %}
+                                FREE
                             {% endif %}
                         </td>
                         <td><a href="#">EDIT</a></td>
