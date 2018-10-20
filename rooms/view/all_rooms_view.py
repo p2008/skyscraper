@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
-from .models import Reservation, Room
 
-# Create your views here.
+
+from rooms.models import Room, Reservation
 
 
 def all_rooms(request):
