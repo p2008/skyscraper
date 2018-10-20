@@ -4,4 +4,5 @@ from django.shortcuts import render, HttpResponse
 
 
 def all_rooms(request):
+
     return HttpResponse('działa')
