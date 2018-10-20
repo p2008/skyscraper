@@ -1,7 +1,6 @@
 from django.shortcuts import render
-from .models import Room
 
-# Create your views here.
+from rooms.models import Room
 
 
 def all_rooms(request):
