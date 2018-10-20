@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from .models import Reservation, Room
+from django.shortcuts import render
+from .models import Room
 
 # Create your views here.
 
