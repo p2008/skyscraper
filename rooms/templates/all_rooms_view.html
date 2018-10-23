@@ -1,42 +1,50 @@
 {% extends 'base.html' %}
 
-{% block title %}Show all {{ block.super }}{% endblock title %}
+{% load custom_filters %}
 
+
+{% block title %}Show all {{ block.super }}{% endblock title %}
+{#Zrobić menu jako szablon i załadować#}
 {% block content %}
-    <div class="">
-        <table class="table">
-            <thead>
+    <div class="col-md-12">
+        <table class="table table-striped no-top-border" >
+            <thead class="">
                 <tr>
-                    <th>Lp.</th>
-                    <th>Name</th>
-                    <th>capacity</th>
-                    <th>projector</th>
-                    <th>reserved</th>
-                    <th colspan="2"></th>
+                    <th scope="col" class="column-max text-secondary">Edit</th>
+                    <th scope="col" class="column-max text-secondary">Del</th>
+                    <th scope="col" class="column-fit text-secondary">Lp.</th>
+                    <th scope="col" class="text-secondary">Name</th>
+                    <th scope="col" class="column-fit text-secondary">Capacity</th>
+                    <th scope="col" class="column-fit text-secondary">Projector</th>
+                    <th scope="col" class="column-fit text-secondary">Reserved</th>
                 </tr>
             </thead>
             <tbody>
                 {% for room in rooms %}
                     <tr>
+                        <td>
+                            <a href="{% url 'edit_room' %}?pk={{ room.pk }}">
+                                <button class="btn btn-info btn-xs glyphicon glyphicon-pencil"></button>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'room_remove' room.pk %}">
+                                <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"></button>
+                            </a>
+                        </td>
                         <td>{{ room.id }}</td>
                         <td>{{ room.name }}</td>
                         <td>{{ room.capacity }}</td>
                         <td>
-                            {% if room.is_projector %}
-                                Yes
-                            {% else %}
-                                No
-                            {% endif %}
+                            {{ room.is_projector|if_yes_no }}
                         </td>
                         <td>
                             {% if room.reservation.count > 0 %}
-                                <a href="#">{{ room.reservation.count }}</a>
+                                <a href="#" class="btn btn-outline-info btn-sm td-btn">{{ room.reservation.count }}</a>
                             {% else %}
                                 FREE
                             {% endif %}
                         </td>
-                        <td><a href="{% url 'edit_room' %}?pk={{ room.pk }}">EDIT</a></td>
-                        <td><a href="#">DEL</a></td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -1,0 +1,29 @@
+nav {
+    margin-bottom: 5em;
+    border-radius: 2%;
+}
+
+nav a:hover {
+    background-color: #e0e0e0;
+    border-radius: 10%;
+}
+
+.column-fit {
+width: 1px;
+white-space: nowrap;
+}
+
+.column-max {
+width: 5em;
+}
+
+.no-top-border {
+border-top: hidden;
+}
+
+.td-btn{
+width: 5em;
+}
+
+
+
