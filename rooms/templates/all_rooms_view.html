@@ -32,7 +32,7 @@
                                 <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"></button>
                             </a>
                         </td>
-                        <td>{{ room.id }}</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>{{ room.name }}</td>
                         <td>{{ room.capacity }}</td>
                         <td>
@@ -40,7 +40,7 @@
                         </td>
                         <td>
                             {% if room.reservation.count > 0 %}
-                                <a href="#" class="btn btn-outline-info btn-sm td-btn">{{ room.reservation.count }}</a>
+                                <a href="#" class="btn btn-outline-info btn-sm td-btn">{{ room.reservation|count_future }}</a>
                             {% else %}
                                 FREE
                             {% endif %}
