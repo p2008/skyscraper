@@ -13,6 +13,16 @@
         {% else %}
         No
         {% endif %}<br>
-    Go back
+    {% if reservation_dates %}
+    Reservations:
+    <ol>
+        {% for date in reservation_dates %}
+            <li>{{ date }}</li>
+        {% endfor %}
+    </ol>
+    <br>
+    {% endif %}
+    <br>
+    <a href="{% url 'room_reservations' room.id %}">Make reservation</a><br>
+    <a href="{% url 'all_rooms' %}">Main page</a>
 {% endblock content %}
-
