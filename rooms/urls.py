@@ -1,7 +1,5 @@
 from django.urls import path
-from .view import (all_rooms_view, room_remove_view, edit_room_view,
-    # , room_details_view,
-                   )
+from .view import (all_rooms_view, room_remove_view, edit_room_view, room_details_view)
 
 # import all_rooms_view, room_remove, edit_room_view
 
@@ -19,5 +17,5 @@ urlpatterns = [
 
     # Artem
     path('remove/<int:rid>/', room_remove_view.room_remove, name='room_remove'),
-    # path('details/<int:rid>/', room_details_view.room_details, name='room_detail'),
+    path('details/<int:rid>/', room_details_view.room_details, name='room_detail'),
 ]
