@@ -12,11 +12,11 @@
                 <tr>
                     <th scope="col" class="column-max text-secondary">Edit</th>
                     <th scope="col" class="column-max text-secondary">Del</th>
-                    <th scope="col" class="column-fit text-secondary">Lp.</th>
+                    <th scope="col" class="column-fit text-secondary">No</th>
                     <th scope="col" class="text-secondary">Name</th>
                     <th scope="col" class="column-fit text-secondary">Capacity</th>
                     <th scope="col" class="column-fit text-secondary">Projector</th>
-                    <th scope="col" class="column-fit text-secondary">Reserved</th>
+                    <th scope="col" class="column-fit text-secondary">Reservations</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +33,7 @@
                             </a>
                         </td>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ room.name }}</td>
+                        <td><a href="{% url 'room_details' room.id %}">{{ room.name }}</a></td>
                         <td>{{ room.capacity }}</td>
                         <td>
                             {{ room.is_projector|if_yes_no }}

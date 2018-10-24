@@ -1,5 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
-from django.shortcuts import render
+from django.shortcuts import redirect
 from rooms.models import Room
 from django.contrib import messages
 
@@ -8,11 +8,8 @@ from django.contrib import messages
 def room_remove(request, rid):
     try:
         room = Room.objects.get(pk=rid)
-        # tu może użyć get_object_or_404
         room.delete()
         messages.success(request, f'Usunięto salę {room.name}')
     except ObjectDoesNotExist:
-        messages.success(request, 'Sali nie znaleziono')  ## TODO ask Paweł about messages methods
-        # Tutaj możesz użyć messages.error
-    return render(request, 'room_remove_view.html')
-        # zobacz jak zadziała redirect do all_rooms
+        messages.error(request, 'Nie znaleziono sali')
+    return redirect('all_rooms')
