@@ -4,3 +4,4 @@ logins.py
 .idea/
 __pycache__/
 rooms/migrations/
+notes.txt

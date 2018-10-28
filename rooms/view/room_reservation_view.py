@@ -1,6 +1,12 @@
-from django.http.response import HttpResponse
+from django.shortcuts import render
+
+from forms import RoomReservationForm
 
 
-def room_reservation(request, rid):
+class RoomReservationView(ModelView):
+    template_name = 'room_reservation_view'
+    form = RoomReservationForm
 
-    return HttpResponse(rid)
+    def get(self, request):
+
+        return render(request, self.template_name, {'form': self.form})
