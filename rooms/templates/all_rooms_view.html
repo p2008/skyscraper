@@ -2,13 +2,12 @@
 
 {% load custom_filters %}
 
-
 {% block title %}Show all {{ block.super }}{% endblock title %}
-{#Zrobić menu jako szablon i załadować#}
+
 {% block content %}
     <div class="col-md-12">
         <div class="search">
-            <form class="form-inline" method="get" action="">
+            <form class="form-inline" method="get" action="{% url 'search_room' %}">
                 <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search by name" aria-label="name" {% if search_form.name %} value="{{ search_form.name }}" {% endif %}>
                 <input id="number" class="form-control mr-sm-2"  type="number" name="min_capacity" placeholder="Search by space" aria-label="min_capacity" value="{{ search_form.min_capacity }}">
                 <input class="form-control mr-sm-2" type="date" name="day" placeholder="Search by day" aria-label="day" value="{{ search_form.day }}">
