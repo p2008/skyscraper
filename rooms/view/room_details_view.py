@@ -8,15 +8,15 @@ def room_details(request, rid):
     try:
         room = Room.objects.get(pk=rid)
         title = f'room {room.name}'
-        today = datetime.now().strftime('%Y-%m-%d')
-        reservation_raw = Reservation.objects.filter(room_id=rid).filter(date__gte=today)
-        reservation_dates = [date.date for date in reservation_raw]
+        current_day = datetime.now().strftime('%Y-%m-%d')
+        reservations_raw = Reservation.objects.filter(room_id=rid).filter(date__gte=current_day)
+        reservations = [reservation for reservation in reservations_raw]
 
         return render(request, 'room_details_view.html',
                       {'title': title,
                        'room': room,
-                       'reservation_dates': reservation_dates})
+                       'reservations': reservations})
     except Exception as e:
         print(e)
-        messages.error(request, 'Nie znaleziono sali')
+        messages.error(request, 'There is no such room')
         return redirect('all_rooms')

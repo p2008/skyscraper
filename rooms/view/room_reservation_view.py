@@ -1,8 +1,6 @@
 from datetime import datetime, timedelta
-
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from django.urls.base import reverse
 from django.views import View
 from ..forms import RoomReservationForm
 
@@ -23,7 +21,7 @@ class RoomReservationView(View):
         if form.is_valid():
             form.save()
             messages.success(request, 'Booked')
-            return redirect(reverse('all_rooms'))
+            return redirect('room_details', rid=request.GET.get('rid'))
 
         messages.error(request, 'Error occurred, please try again')
         return render(request, self.template_name, {'form': form})

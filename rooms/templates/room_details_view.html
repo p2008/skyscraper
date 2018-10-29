@@ -5,22 +5,41 @@
 
 
 {% block content %}
-    <h2>{{room.name}}</h2>
-    Capacity: {{room.capacity}}<br>
+    <h2>{{ room.name }}</h2>
+    Capacity: {{ room.capacity }}<br>
     Projector available:
-        {% if room.is_projector %}
+    {% if room.is_projector %}
         Yes
-        {% else %}
+    {% else %}
         No
-        {% endif %}<br>
-    {% if reservation_dates %}
-    Reservations:
-    <ol>
-        {% for date in reservation_dates %}
-            <li>{{ date }}</li>
-        {% endfor %}
-    </ol>
-    <br>
+    {% endif %}<br>
+    {% if reservations %}
+        Reservations:
+        <table class="table table-striped no-top-border">
+            <thead class="">
+            <tr>
+                <th scope="col" class="column-max text-secondary">No</th>
+                <th scope="col" class="column-max text-secondary">Date</th>
+                <th scope="col" class="column-max text-secondary">Comment</th>
+                <th scope="col" class="column-fit text-secondary"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reservation in reservations %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ reservation.date }}</td>
+                    <td>{{ reservation.comment }}</td>
+                    <td>
+                        <a href="{% url 'reservation_cancel' reservation.pk room.id %}">
+                            <button class="btn btn-danger btn-xs glyphicon glyphicon-trash">Cancel</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot></tfoot>
+        </table>
     {% endif %}
     <br>
     <a href="{% url 'room_reservation' %}?rid={{ room.id }}">Make reservation</a><br>

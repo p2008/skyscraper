@@ -22,8 +22,6 @@
         <table class="table table-striped no-top-border">
             <thead class="">
             <tr>
-                <th scope="col" class="column-max text-secondary">Edit</th>
-                <th scope="col" class="column-max text-secondary">Del</th>
                 <th scope="col" class="column-fit text-secondary">No</th>
                 <th scope="col" class="text-secondary">Name</th>
                 <th scope="col" class="column-fit text-secondary">Capacity</th>
@@ -32,21 +30,13 @@
                 <th scope="col" class="column-fit text-secondary">
                     Reservations
                 </th>
+                <th scope="col" class="column-max text-secondary"></th>
+                <th scope="col" class="column-max text-secondary"></th>
             </tr>
             </thead>
             <tbody>
             {% for room in rooms %}
                 <tr>
-                    <td>
-                        <a href="{% url 'edit_room' %}?pk={{ room.pk }}">
-                            <button class="btn btn-info btn-xs glyphicon glyphicon-pencil"></button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="{% url 'room_remove' room.pk %}">
-                            <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"></button>
-                        </a>
-                    </td>
                     <td>{{ forloop.counter }}</td>
                     <td>
                         <a href="{% url 'room_details' room.id %}">{{ room.name }}</a>
@@ -57,12 +47,22 @@
                     </td>
                     <td>
                         {% if room.reservation.count > 0 %}
-                            <a href="{% url 'room_reservation' %}?rid={{ room.id }}"
+                            <a href="{% url 'room_details' room.id %}"
                                class="btn btn-outline-info btn-sm td-btn link-text"><span>{{ room.reservation|count_future }}</span></a>
                         {% else %}
                             <a href="{% url 'room_reservation' %}?rid={{ room.id }}"
                                class="btn btn-outline-info btn-sm td-btn link-text"><span>FREE</span></a>
                         {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'edit_room' %}?pk={{ room.pk }}">
+                            <button class="btn btn-info btn-xs glyphicon glyphicon-pencil">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'room_remove' room.pk %}">
+                            <button class="btn btn-danger btn-xs glyphicon glyphicon-trash">Delete</button>
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
