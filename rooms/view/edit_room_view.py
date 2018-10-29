@@ -1,4 +1,4 @@
-from django.shortcuts import HttpResponse, render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views import View
 from ..forms import EditRoomForm
 from ..models import Room
@@ -25,6 +25,7 @@ class EditRoom(View):
 
         if form.is_valid():
             form.save()
+            messages.success(request, f'{room.name} room edited successfully')
             return redirect(reverse('all_rooms'))
 
         messages.error(request, "An error occurred. Your form hadn't been save")

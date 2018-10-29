@@ -9,7 +9,7 @@ def room_remove(request, rid):
     try:
         room = Room.objects.get(pk=rid)
         room.delete()
-        messages.success(request, f'Usunięto salę {room.name}')
+        messages.success(request, f'{room.name} has been deleted')
     except ObjectDoesNotExist:
         messages.error(request, 'Nie znaleziono sali')
     return redirect('all_rooms')
