@@ -16,3 +16,8 @@ class Reservation(models.Model):
                              related_name='reservation')
     comment = models.TextField(blank=True)  # blank=True added to enable empty
                                             # comments while booking
+
+    class Meta:
+        unique_together = ('date', 'room')  # Those two columns can't be
+                                            # duplicated as a row. Must be only
+                                            # one reservation of room per day
