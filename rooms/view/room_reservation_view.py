@@ -1,12 +1,29 @@
-from django.shortcuts import render
+from datetime import datetime, timedelta
 
-from forms import RoomReservationForm
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.urls.base import reverse
+from django.views import View
+from ..forms import RoomReservationForm
 
 
-class RoomReservationView(ModelView):
-    template_name = 'room_reservation_view'
-    form = RoomReservationForm
+class RoomReservationView(View):
+    template_name = 'room_reservation_view.html'
+    form_class = RoomReservationForm
 
     def get(self, request):
+        tomorrow = datetime.now() + timedelta(1)
+        form = self.form_class(initial={
+            'room': request.GET.get('rid'),
+            'date': tomorrow.strftime('%Y-%m-%d')})
+        return render(request, self.template_name, {'form': form})
 
-        return render(request, self.template_name, {'form': self.form})
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Booked')
+            return redirect(reverse('all_rooms'))
+
+        messages.error(request, 'Error occurred, please try again')
+        return render(request, self.template_name, {'form': form})

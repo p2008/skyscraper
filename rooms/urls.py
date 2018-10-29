@@ -5,8 +5,6 @@ from .view import (all_rooms_view,
                    room_details_view,
                    room_reservation_view)
 
-# import all_rooms_view, rooms_remove, edit_room_view
-
 urlpatterns = [
     # Paweł
     path('', all_rooms_view.all_rooms, name='all_rooms'),
@@ -17,7 +15,8 @@ urlpatterns = [
     # place your code here
 
     # Kewin
-    path('reservation/<int:rid>/', room_reservation_view.room_reservation, name='room_reservations'),
+    path('reservation/', room_reservation_view.RoomReservationView.as_view(),
+         name='room_reservation'),
 
     # Artem
     path('remove/<int:rid>/', room_remove_view.room_remove, name='room_remove'),

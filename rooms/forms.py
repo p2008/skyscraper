@@ -12,8 +12,8 @@ class EditRoomForm(ModelForm):
 class RoomReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['date', 'comment']
+        fields = ['date', 'comment', 'room']
         widgets = {
             'date': forms.SelectDateWidget,
-            'comment': forms.TextArea(attrs={'cols': 10, 'rows': 2})
+            'comment': forms.Textarea(attrs={'cols': 30, 'rows': 3})
         }

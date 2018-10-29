@@ -1,9 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
-
 class Room(models.Model):
     name = models.CharField(max_length=64)
     capacity = models.PositiveIntegerField()
@@ -17,4 +14,5 @@ class Reservation(models.Model):
     date = models.DateField()
     room = models.ForeignKey(Room, on_delete=models.CASCADE,
                              related_name='reservation')
-    comment = models.TextField()
+    comment = models.TextField(blank=True)  # blank=True added to enable empty
+                                            # comments while booking

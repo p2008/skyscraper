@@ -5,5 +5,22 @@
 
 
 {% block content %}
-
+    <div class="">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                {{ form.date.errors }}
+                {{ form.date.label_tag }}
+                {{ form.date }}
+            </div>
+            <div class="fieldWrapper">
+                {{ form.comment.errors }}
+                {{ form.comment.label_tag }}
+                {{ form.comment }}
+            </div>
+            {{ form.room.as_hidden }}
+            <input type="submit" value="Book">
+        </form>
+    </div>
 {% endblock content %}
