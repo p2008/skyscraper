@@ -4,25 +4,24 @@
 
 {% block content %}
     <div class="">
-        <form method="post">
+        <form method="post" >
             {% csrf_token %}
             {{ form.non_field_errors }}
-            <div class="fieldWrapper">
+            <div class="fieldWrapper form-group">
                 {{ form.name.errors }}
                 <label for="{{ form.name.id_for_label }}">Room name</label>
                 {{ form.name }}
             </div>
-            <div class="fieldWrapper">
+            <div class="fieldWrapper form-group">
                 {{ form.capacity.errors }}
                 <label for="{{ form.capacity.id_for_label }}">Room capacity</label>
                 {{ form.capacity }}
             </div>
-            <div class="fieldWrapper">
+            <div class="fieldWrapper form-group">
                 {{ form.is_projector.errors }}
                 <label for="{{ form.is_projector.id_for_label }}">Room has projector</label>
                 {{ form.is_projector }}
             </div>
-{#            {{ form.as_p }}#}
             <input type="submit" value="Edit">
         </form>
     </div>

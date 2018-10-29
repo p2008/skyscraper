@@ -25,12 +25,23 @@ border-top: hidden;
 width: 5em;
 }
 
-
 .link-text:hover span {
     display: none;
 }
+
 .link-text:hover:after {
     content: 'ADD';
 }
 
+.search{
+    margin-bottom: 2em;
+}
+
+#number{
+    width: 10em;
+}
+
+#projector{
+    width: 3em;
+}
 

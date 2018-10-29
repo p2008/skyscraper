@@ -7,6 +7,15 @@ class EditRoomForm(ModelForm):
     class Meta:
         model = Room
         fields = ['name', 'capacity', 'is_projector']
+        widgets = {
+            'name': forms.TextInput(
+                attrs={'placeholder': 'room name',
+                       'class': ''}),
+            'capacity': forms.NumberInput(
+                attrs={'class': 'number'}),
+            'is_projector': forms.CheckboxInput(
+                attrs={'class': ''})
+        }
 
 
 class RoomReservationForm(ModelForm):

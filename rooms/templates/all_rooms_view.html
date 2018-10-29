@@ -7,46 +7,66 @@
 {#Zrobić menu jako szablon i załadować#}
 {% block content %}
     <div class="col-md-12">
-        <table class="table table-striped no-top-border" >
+        <div class="search">
+            <form class="form-inline" method="get" action="">
+                <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search by name" aria-label="name" {% if search_form.name %} value="{{ search_form.name }}" {% endif %}>
+                <input id="number" class="form-control mr-sm-2"  type="number" name="min_capacity" placeholder="Search by space" aria-label="min_capacity" value="{{ search_form.min_capacity }}">
+                <input class="form-control mr-sm-2" type="date" name="day" placeholder="Search by day" aria-label="day" value="{{ search_form.day }}">
+                <div class="checkbox">
+                    <label for="projector">projector:
+                    <input id="projector" class="form-control" type="checkbox" name="projector" placeholder="Search by projector" aria-label="projector" {% if search_form.projector %} checked {% endif %}>
+                </label></div>
+                <button class="btn btn-outline-info my-2 my-sm-0" name="search" type="submit">Search</button>
+            </form>
+        </div>
+
+        <table class="table table-striped no-top-border">
             <thead class="">
-                <tr>
-                    <th scope="col" class="column-max text-secondary">Edit</th>
-                    <th scope="col" class="column-max text-secondary">Del</th>
-                    <th scope="col" class="column-fit text-secondary">No</th>
-                    <th scope="col" class="text-secondary">Name</th>
-                    <th scope="col" class="column-fit text-secondary">Capacity</th>
-                    <th scope="col" class="column-fit text-secondary">Projector</th>
-                    <th scope="col" class="column-fit text-secondary">Reservations</th>
-                </tr>
+            <tr>
+                <th scope="col" class="column-max text-secondary">Edit</th>
+                <th scope="col" class="column-max text-secondary">Del</th>
+                <th scope="col" class="column-fit text-secondary">No</th>
+                <th scope="col" class="text-secondary">Name</th>
+                <th scope="col" class="column-fit text-secondary">Capacity</th>
+                <th scope="col" class="column-fit text-secondary">Projector
+                </th>
+                <th scope="col" class="column-fit text-secondary">
+                    Reservations
+                </th>
+            </tr>
             </thead>
             <tbody>
-                {% for room in rooms %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'edit_room' %}?pk={{ room.pk }}">
-                                <button class="btn btn-info btn-xs glyphicon glyphicon-pencil"></button>
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'room_remove' room.pk %}">
-                                <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"></button>
-                            </a>
-                        </td>
-                        <td>{{ forloop.counter }}</td>
-                        <td><a href="{% url 'room_details' room.id %}">{{ room.name }}</a></td>
-                        <td>{{ room.capacity }}</td>
-                        <td>
-                            {{ room.is_projector|if_yes_no }}
-                        </td>
-                        <td>
-                            {% if room.reservation.count > 0 %}
-                                <a href="{% url 'room_reservation' %}?rid={{ room.id }}" class="btn btn-outline-info btn-sm td-btn link-text"><span>{{ room.reservation|count_future }}</span></a>
-                            {% else %}
-                                <a href="{% url 'room_reservation' %}?rid={{ room.id }}" class="btn btn-outline-info btn-sm td-btn link-text"><span>FREE</span></a>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for room in rooms %}
+                <tr>
+                    <td>
+                        <a href="{% url 'edit_room' %}?pk={{ room.pk }}">
+                            <button class="btn btn-info btn-xs glyphicon glyphicon-pencil"></button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{% url 'room_remove' room.pk %}">
+                            <button class="btn btn-danger btn-xs glyphicon glyphicon-trash"></button>
+                        </a>
+                    </td>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="{% url 'room_details' room.id %}">{{ room.name }}</a>
+                    </td>
+                    <td>{{ room.capacity }}</td>
+                    <td>
+                        {{ room.is_projector|if_yes_no }}
+                    </td>
+                    <td>
+                        {% if room.reservation.count > 0 %}
+                            <a href="{% url 'room_reservation' %}?rid={{ room.id }}"
+                               class="btn btn-outline-info btn-sm td-btn link-text"><span>{{ room.reservation|count_future }}</span></a>
+                        {% else %}
+                            <a href="{% url 'room_reservation' %}?rid={{ room.id }}"
+                               class="btn btn-outline-info btn-sm td-btn link-text"><span>FREE</span></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
             <tfoot></tfoot>
         </table>
