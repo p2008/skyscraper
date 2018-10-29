@@ -26,4 +26,11 @@ width: 5em;
 }
 
 
+.link-text:hover span {
+    display: none;
+}
+.link-text:hover:after {
+    content: 'ADD';
+}
+
 

@@ -40,9 +40,9 @@
                         </td>
                         <td>
                             {% if room.reservation.count > 0 %}
-                                <a href="#" class="btn btn-outline-info btn-sm td-btn">{{ room.reservation|count_future }}</a>
+                                <a href="{% url 'room_reservation' %}?rid={{ room.id }}" class="btn btn-outline-info btn-sm td-btn link-text"><span>{{ room.reservation|count_future }}</span></a>
                             {% else %}
-                                FREE
+                                <a href="{% url 'room_reservation' %}?rid={{ room.id }}" class="btn btn-outline-info btn-sm td-btn link-text"><span>FREE</span></a>
                             {% endif %}
                         </td>
                     </tr>
