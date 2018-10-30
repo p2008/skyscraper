@@ -1,0 +1,13 @@
+
+        <div class="search">
+            <form class="form-inline" method="get" action="{% url 'search_room' %}">
+                <input class="form-control mr-sm-2" type="search" name="name" placeholder="Search by name" aria-label="name" {% if search_form.name %} value="{{ search_form.name }}" {% endif %}>
+                <input id="number" class="form-control mr-sm-2"  type="number" name="min_capacity" min="1" placeholder="Search by space" aria-label="min_capacity" value="{{ search_form.min_capacity }}">
+                <input class="form-control mr-sm-2" type="date" name="day" placeholder="Search by day" aria-label="day" value="{{ search_form.day }}">
+                <div class="checkbox">
+                    <label for="projector">projector:
+                    <input id="projector" class="form-control" type="checkbox" name="projector" placeholder="Search by projector" aria-label="projector" {% if search_form.projector %} checked {% endif %}>
+                </label></div>
+                <button class="btn btn-outline-info my-2 my-sm-0" name="search" type="submit">Search</button>
+            </form>
+        </div>

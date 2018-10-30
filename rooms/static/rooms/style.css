@@ -29,8 +29,12 @@ width: 5em;
     display: none;
 }
 
-.link-text:hover:after {
+#add.link-text:hover:after {
     content: 'ADD';
+}
+
+#show.link-text:hover:after {
+    content: 'SHOW';
 }
 
 .search{
